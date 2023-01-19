@@ -1,4 +1,8 @@
-class Like < ApplicationRecord
-  belongs_to :post
-  belongs_to :user
+class Like < ActiveRecord::Base
+  belongs_to :user, class_name: 'User'
+  belongs_to :post, class_name: 'Post'
+
+  def update_likes_for_posts
+    post.likes_counter = post.likes.count
+  end
 end
