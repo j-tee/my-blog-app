@@ -3,7 +3,14 @@ class Post < ActiveRecord::Base
   has_many :comments, class_name: 'Comment', foreign_key: 'post_id'
   has_many :likes, class_name: 'Like', foreign_key: 'post_id'
 
-  def posts_counter
+  validates :title, presence: true, length: { in: 1..250 }
+  validates :text, presence: true, length: { in: 1..500 }
+  validates :comments_counter, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :likes_counter, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+
+  after_create :update_posts_counter
+
+  def update_posts_counter
     user.posts_counter = user.posts.count
     user.save
   end
