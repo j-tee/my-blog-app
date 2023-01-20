@@ -68,7 +68,7 @@ RSpec.describe Post, type: :model do
     # let(:post) { FactoryBot.create(:post) }
     post = FactoryBot.create(:post)
     before do
-      FactoryBot.create_list(:post, 2, user: user)
+      FactoryBot.create_list(:post, 2, user:)
       p user.reload.posts_counter
     end
     it 'updates the posts counter on the user' do
