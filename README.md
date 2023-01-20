@@ -24,8 +24,8 @@ After you're finished please remove all the comments and instructions!
 
 <div align="center">
 
-  <img src="https://avatars.githubusercontent.com/u/22550229?s=200&v=4" alt="logo" width="140"  height="auto" />
-  <br/>
+  <!-- <img src="https://avatars.githubusercontent.com/u/22550229?s=200&v=4" alt="logo" width="140"  height="auto" />
+  <br/> -->
 
 
 </div>
@@ -178,17 +178,17 @@ Example:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- FUTURE FEATURES -->
-<!-- 
+FUTURE FEATURES
+
 ## 🔭 Future Features <a name="future-features"></a>
 
-> Describe 1 - 3 features you will add to the project.
+> 
 
-- [ ] **[new_feature_1]**
-- [ ] **[new_feature_2]**
-- [ ] **[new_feature_3]** -->
+- [API ] **[API calls to allow other client apps to be able to access data]**
+- [Authentication & Authorization ] **[Implementation of user account authentication to enhance security]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- CONTRIBUTING -->
 
