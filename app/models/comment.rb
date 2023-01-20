@@ -7,5 +7,6 @@ class Comment < ActiveRecord::Base
   after_save :update_comments_for_post
   def update_comments_for_post
     post.comments_counter = post.comments.count
+    post.save
   end
 end

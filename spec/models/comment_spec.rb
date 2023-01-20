@@ -18,4 +18,16 @@ RSpec.describe Comment, type: :model do
     comment.text = nil
     expect(comment).to_not be_valid
   end
+
+  describe '#update_comments_for_post' do
+    post = FactoryBot.create(:post)
+    comment = FactoryBot.create(:comment)
+    before do
+      FactoryBot.create_list(:comment, 2, post:)
+    end
+    it 'updates the comments counter on the post' do
+      expect(comment.update_comments_for_post).to be_truthy
+      expect(post.reload.comments_counter).to be(2)
+    end
+  end
 end

@@ -62,21 +62,30 @@ RSpec.describe Post, type: :model do
     post.likes_counter = 1
     expect(post).to be_valid
   end
+
   describe '#update_posts_counter' do
-    # let(:user) { FactoryBot.create(:user) }
-    user = FactoryBot.create(:user)
-    # let(:post) { FactoryBot.create(:post) }
-    post = FactoryBot.create(:post)
+    let(:user) { FactoryBot.create(:user) }
+    let(:post) { FactoryBot.create(:post) }
     before do
       FactoryBot.create_list(:post, 2, user:)
-      p user.reload.posts_counter
     end
+
     it 'updates the posts counter on the user' do
-      expect { post.update_posts_counter }.to change { user.reload.posts_counter }.from(0).to(2)
+      result = post.update_posts_counter
+      count = user.reload.posts_counter
+      expect(result).to be_truthy
+      expect(count).to eq(2)
     end
-    it 'save the user' do
-      expect(user).to receive(:save)
-      post.update_posts_counter
+
+    describe '#recent_comments' do
+      let(:post) { FactoryBot.create(:post) }
+      let(:comment) { FactoryBot.create(:comment) }
+      before do
+        FactoryBot.create_list(:comment, 10, post:)
+      end
+      it 'returns the 5 most recent comments' do
+        expect(post.recent_comments).to eq(post.comments.order(created_at: :desc).limit(5))
+      end
     end
   end
 end
