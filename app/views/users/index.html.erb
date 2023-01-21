@@ -1,0 +1,13 @@
+<h1>The Blogger!!</h1>
+    <% @users.each do |user| %>
+      <div>
+        <span>
+            <%= image_tag(user.photo, width: "50", height: "50") %>
+        </span>
+        <span>
+            <%= user.name %>
+        </span>
+      </div>
+    <% end %>
+  
+
