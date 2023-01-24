@@ -18,4 +18,12 @@ class Post < ActiveRecord::Base
   def recent_comments
     comments.order(created_at: :desc).limit(5)
   end
+
+  def self.user_post(user_id, post_id)
+    Post.where(user_id: user_id, id: post_id).first
+  end
+
+  def self.user_posts(user_id)
+    Post.where(user_id: user_id)
+  end
 end

@@ -1,0 +1,106 @@
+.user-list {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  .user-list:first-child {
+    margin-top: 5rem;
+  }
+
+  .user-list:last-child {
+    margin-bottom: 5rem;
+  }
+
+  .user-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin: 5rem 10rem 2rem 10rem;
+  }
+
+  .user-wrapper {
+    background-color: #f4f4f4;
+  }
+
+  .posts {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  
+  .posts li {
+    margin-left: 0;
+  }
+
+  .bio {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+    border: 1px solid black;
+    padding: 1rem;
+  }
+
+  .posts li {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid black;
+    margin-bottom: 2rem;
+    padding: 1rem;
+  }
+
+  .posts li span:last-child {
+    text-align-last: end;
+  }
+
+  .bio span:last-child {
+    text-align: start;
+  }
+
+  .post-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+  }
+  
+
+  .post-text, .comment-text {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .user-info {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 10px 10px 5px #888888;
+    background: linear-gradient(to bottom, #F5F5DC, #FFA07A)
+  }
+  .posts li:nth-child(n+4) {
+    display: none;
+  }
+  
+  .comments {
+    border: 1px solid black;
+    margin-top: 0;
+  }
+
+  .user-info span:first-child {
+    padding: 2rem 0 0 1rem;
+  }
+
+  .user-info span:last-child {
+    text-align: right;
+    padding-right: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .photo img {
+    border-radius: 2rem;
+    box-shadow: 0px 10px 15px rgb(6, 6, 6);
+  }
