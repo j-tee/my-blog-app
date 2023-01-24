@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
   end
+
   def show
     @user = User.find(params[:user_id])
     respond_to do |format|
@@ -12,7 +13,6 @@ class UsersController < ApplicationController
 
   def user_posts
     @posts = Post.user_posts(params[:user_id])
-
   end
 
   def user_post

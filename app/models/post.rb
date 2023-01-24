@@ -20,10 +20,10 @@ class Post < ActiveRecord::Base
   end
 
   def self.user_post(user_id, post_id)
-    Post.where(user_id: user_id, id: post_id).first
+    Post.where(user_id:, id: post_id).first
   end
 
   def self.user_posts(user_id)
-    Post.where(user_id: user_id)
+    Post.where(user_id:)
   end
 end
