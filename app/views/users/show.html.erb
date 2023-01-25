@@ -1,1 +1,38 @@
-A user's details with a list of posts
+<%= javascript_include_tag "show_more" %>
+<div class="user-wrapper">
+        <div class="user-container">
+            <div class="user-list">
+                <span class="photo">
+                    <%= image_tag(@user.photo, size: "100x100" ) %>
+                </span>
+                <span class="user-info">
+                    <span>
+                        <%= link_to @user.name, user_path(user_id: @user.id, format: :html) %>
+                    </span>
+                    <span>
+                        number of posts: <%= @user.posts_counter ? @user.posts_counter : 0 %>
+                    </span>
+                </span>
+            </div>
+            <div class="bio">
+                <span> Bio </span>
+                <span>
+                    <%=@user.bio%>
+                </span>
+            </div>
+            <ul class="posts">
+                <% @user.posts.each do |post| %>
+                    <li>
+                        <span>
+                            <%= link_to "Post #: #{post.id}" , user_posts_path(user_id: @user.id) %>
+                        </span>
+                        <span>
+                            <%= post.text %>
+                        </span>
+                        <span>comments: <%= post.comments.count %>&nbsp; likes: <%= post.likes.count %></span>
+                    </li>
+                    <% end %>
+            </ul>
+            <button id="show-more-button">Show More</button>
+        </div>
+    </div>
