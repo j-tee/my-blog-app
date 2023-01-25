@@ -1,4 +1,4 @@
-class UsersController < ApplicationController
+class PostsController < ApplicationController
   def index
     @place_holder = 'List of users'
   end
