@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    @placeholder_text = 'This is the response body.'
   end
 
   def show
