@@ -27,7 +27,7 @@
                 <span>comments: <%= post.comments.count %>&nbsp; likes: <%= post.likes.count %></span>
             </span>
             <ul class="comment-text">
-                <%post.comments.each do |comment|%>
+                <%post.comments.order("created_at DESC").first(5).each do |comment|%>
                 <li>
                     <%=post.user.name%>:<%=comment.text%>
                 </li>

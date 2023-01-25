@@ -26,7 +26,7 @@
             </li>
         </ul>
         <ul class="comments">
-            <%@post.comments.order("created_at DESC").first(5).each do |comment|%>
+            <%@post.comments.each do |comment|%>
                 <li>
                     <%=comment.user.name%> : <%=comment.text%>
                 </li>
