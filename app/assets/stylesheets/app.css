@@ -88,10 +88,6 @@
   background: linear-gradient(to bottom, #f5f5dc, #ffa07a);
 }
 
-.posts li:nth-child(n+4) {
-  display: none;
-}
-
 .comments {
   border: 1px solid black;
   margin-top: 0;
