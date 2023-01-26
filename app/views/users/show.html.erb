@@ -19,7 +19,7 @@
       <span> <%=@user.bio%> </span>
     </div>
     <ul class="posts">
-      <% @user.posts.each do |post| %>
+      <% @user.recent_posts.each do |post| %>
       <li>
         <span>
           <%= link_to "Post #: #{post.id}" , user_posts_path(user_id: @user.id)
