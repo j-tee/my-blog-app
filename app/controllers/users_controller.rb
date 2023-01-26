@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   def index
-    @place_holder = 'List of users'
+    @users = User.all
   end
 
   def show
-    @place_holder = 'List of users'
+    @user = User.find(params[:user_id])
   end
 end

@@ -1,1 +1,17 @@
-List of users
+<div class="user-wrapper">
+  <div class="user-container">
+    <% @users.each do |user| %>
+    <div class="user-list">
+      <span class="photo"> <%= image_tag(user.photo, size: "100x100") %> </span>
+      <span class="user-info"> 
+        <span>
+          <%= link_to user.name, user_path(user_id: user.id, format: :html) %>
+        </span>
+        <span>
+          number of posts: <%= user.posts_counter ? user.posts_counter : 0 %>
+        </span>
+      </span>
+    </div>
+  <% end %>
+  </div>
+</div>
