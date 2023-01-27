@@ -1,36 +1,55 @@
 <div class="user-wrapper">
-    <div class="user-container">
-        <div class="user-list">
-            <span class="photo">
-                <%= image_tag(@post.user.photo, size: "100x100" ) %>
-            </span>
-            <span class="user-info">
-                <span>
-                    <%= link_to @post.user.name, user_path(user_id: @post.user.id, format: :html) %>
-                </span>
-                <span>
-                    number of posts: <%= @post.user.posts_counter ? @post.user.posts_counter : 0 %>
-                </span>
-            </span>
-        </div>
-        <ul class="posts">
-            <li>
-                <span>
-                    <%= link_to "Post #: #{@post.id}" , user_post_path(user_id: @post.user.id, post_id: @post.id) %>
-                    by <%=@post.user.name%>
-                </span>
-                <span>
-                    <%= @post.text %>
-                </span>
-                <span>comments: <%= @post.comments.count %>&nbsp; likes: <%= @post.likes.count %></span>
-            </li>
-        </ul>
-        <ul class="comments">
-            <%@post.comments.each do |comment|%>
-                <li>
-                    <%=comment.user.name%> : <%=comment.text%>
-                </li>
-                <%end%>
-        </ul>
+  <div class="user-container">
+    <div class="user-list">
+      <span class="photo">
+        <%= image_tag(@post.user.photo, size: "100x100" ) %>
+      </span>
+      <span class="user-info">
+        <span>
+          <%= link_to @post.user.name, user_path(user_id: @post.user.id, format:
+          :html) %>
+        </span>
+        <span>
+          number of posts: <%= @post.user.posts_counter ?
+          @post.user.posts_counter : 0 %>
+        </span>
+      </span>
     </div>
+    <ul class="posts">
+      <li>
+        <span>
+          <%= link_to "Post #: #{@post.id}" , user_post_path(user_id:
+          @post.user.id, post_id: @post.id) %> by <%=@post.user.name%>
+        </span>
+        <span> <%= @post.text %> </span>
+        <span
+          >comments: <%= @post.comments.count %>&nbsp;<%= button_to "likes:
+          #{@post.likes.count}", user_post_likes_path(user_id: @post.user.id,
+          post_id: @post.id), method: :post %>
+        </span>
+      </li>
+    </ul>
+
+    <%= form_with(model: [@post, @post.comments.build], url:
+    user_post_comments_path(user_id: @post.user_id, post_id: @post.id), class:
+    "form-horizontal" ) do |form| %>
+    <div class="form-group">
+      <%= form.label :text, class: "col-sm-2 control-label" %>
+      <div class="col-sm-10">
+        <%= form.text_area :text, class: "form-control" %>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <%= form.submit "Add Comment" , class: "btn btn-primary" %>
+      </div>
+    </div>
+    <% end %>
+
+    <ul class="comments">
+      <%@post.comments.each do |comment|%>
+      <li><%=@post.user.name%> : <%=comment.text%></li>
+      <%end%>
+    </ul>
+  </div>
 </div>

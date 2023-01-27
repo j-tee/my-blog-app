@@ -77,6 +77,10 @@
   flex-direction: column;
 }
 
+.msg {
+  color: black;
+}
+
 .user-info {
   border: 1px solid black;
   display: flex;
