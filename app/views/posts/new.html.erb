@@ -9,14 +9,6 @@
     <%= form.label :text %>
     <%= form.text_area :text, class: 'form-control' %>
   </div>
-  <div class="form-group">
-    <%= form.label :comments_counter %>
-    <%= form.number_field :comments_counter, class: 'form-control', value: @post.comments_counter %>
-  </div>
-  <div class="form-group">
-    <%= form.label :likes_counter %>
-    <%= form.number_field :likes_counter, class: 'form-control', value: @post.likes_counter %>
-  </div>
   <%= form.submit "Create Post", class: "btn btn-primary" %>
 <% end %>
 </div>
