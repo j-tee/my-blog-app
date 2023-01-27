@@ -18,6 +18,8 @@ class PostsController < ApplicationController
   def create
     @user = User.find(params[:user_id])
     @post = @user.posts.build(post_params)
+    @post.comments_counter = 0
+    @post.likes_counter = 0
     if @post.valid?
       @post.save
       flash[:notice] = 'Post created successfully!'
@@ -31,6 +33,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :text, :comments_counter, :likes_counter)
+    params.require(:post).permit(:title, :text)
   end
 end
