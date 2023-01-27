@@ -20,7 +20,11 @@ class Post < ActiveRecord::Base
   end
 
   def self.user_post(user_id, post_id)
-    Post.where(user_id:, id: post_id).first
+    Post.where(user_id:, id: post_id).includes(:comments, :user).first
+  end
+
+  def self.user_comments(user_id, post_id)
+    Comment.where(user_id:, post_id:)
   end
 
   def self.user_posts(user_id)

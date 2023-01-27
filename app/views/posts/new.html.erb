@@ -1,0 +1,34 @@
+<div>
+    <%= form_with(model: [@user, @post], local: true, url: user_posts_path(@user)) do |form| %>
+  <%= form.hidden_field :user_id, value: @user.id %>
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :text %>
+    <%= form.text_area :text, class: 'form-control' %>
+  </div>
+  <div class="form-group">
+    <%= form.label :comments_counter %>
+    <%= form.number_field :comments_counter, class: 'form-control', value: @post.comments_counter %>
+  </div>
+  <div class="form-group">
+    <%= form.label :likes_counter %>
+    <%= form.number_field :likes_counter, class: 'form-control', value: @post.likes_counter %>
+  </div>
+  <%= form.submit "Create Post", class: "btn btn-primary" %>
+<% end %>
+</div>
+<div>
+    <% if flash[:error] %>
+    <div class="alert alert-danger">
+      <%= flash[:error] %>
+    </div>
+  <% end %>
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+</div>
