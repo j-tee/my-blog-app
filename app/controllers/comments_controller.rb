@@ -12,10 +12,6 @@ class CommentsController < ApplicationController
     redirect_to user_post_path(user_id: @post.user_id, id: @post.id)
   end
 
-  def update; end
-
-  def destroy; end
-
   private
 
   def comment_params
