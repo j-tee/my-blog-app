@@ -13,8 +13,6 @@ class PostsController < ApplicationController
     @post.likes_counter = 0
   end
 
-  def add_comment; end
-
   def create
     @user = User.find(params[:user_id])
     @post = @user.posts.build(post_params)

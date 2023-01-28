@@ -1,39 +1,39 @@
 <%= javascript_include_tag "show_more" %>
-<div class="user-wrapper">
-  <div class="user-container">
-    <div class="user-list">
-      <span class="photo">
-        <%= image_tag(@user.photo, size: "100x100" ) %>
-      </span>
-      <span class="user-info">
-        <span>
-          <%= link_to @user.name, user_path(user_id: @user.id, format: :html) %>
+  <div class="user-wrapper">
+    <div class="user-container">
+      <div class="user-list">
+        <span class="photo">
+          <%= image_tag(@user.photo, size: "100x100" ) %>
         </span>
-        <span>
-          number of posts: <%= @user.posts_counter ? @user.posts_counter : 0 %>
+        <span class="user-info">
+          <span>
+            <%= link_to @user.name, user_path(user_id: @user.id, format: :html) %>
+          </span>
+          <span>
+            number of posts: <%= @user.posts_counter ? @user.posts_counter : 0 %>
+          </span>
         </span>
-      </span>
-    </div>
-    <div class="bio">
-      <span> Bio </span>
-      <span> <%=@user.bio%> </span>
-    </div>
-    <ul class="posts">
-      <% @user.recent_posts.each do |post| %>
-      <li>
+      </div>
+      <div class="bio">
+        <span> Bio </span>
         <span>
-          <%= link_to "Post #: #{post.id}" , user_posts_path(user_id: @user.id)
-          %>
+          <%=@user.bio%>
         </span>
-        <span> <%= post.text %> </span>
-        <span
-          >comments: <%= post.comments.count %>&nbsp; likes: <%=
-          post.likes.count %></span
-        >
-      </li>
-      <% end %>
-    </ul>
-    <%= link_to user_posts_path(user_id: @user.id), class: "btn
+      </div>
+      <ul class="posts">
+        <% @user.recent_posts.each do |post| %>
+          <li>
+            <span>
+              <%= link_to "Post #: #{post.id}" , user_posts_path(user_id: @user.id) %>
+            </span>
+            <span>
+              <%= post.text %>
+            </span>
+            <span>comments: <%= post.comments.count %>&nbsp; likes: <%= post.likes.count %></span>
+          </li>
+          <% end %>
+      </ul>
+      <%= link_to user_posts_path(user_id: @user.id), class: "btn
     btn-primary" do %> Show All Posts <% end %>
+    </div>
   </div>
-</div>
