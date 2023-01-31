@@ -28,6 +28,6 @@ class Post < ActiveRecord::Base
   end
 
   def self.user_posts(user_id)
-    Post.includes(:user).where(user_id:)
+    Post.where(user_id:)
   end
 end
