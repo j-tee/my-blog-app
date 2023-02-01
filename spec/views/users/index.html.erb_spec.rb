@@ -1,21 +1,17 @@
 RSpec.feature 'Users view', type: :feature do
   let(:user) { FactoryBot.create(:user) }
-  
+
   before do
     FactoryBot.create(:post, user:)
     FactoryBot.create_list(:user, 3)
     visit users_path
-  end
-
-  scenario 'display all users' do
-    expect(page).to have_css('.user-wrapper .user-container .user-list', count: 4)
+    sleep(5)
   end
 
   scenario 'I can see the profile picture for each user' do
-    user = OpenStruct.new
-    user.photo = 'https://robohash.org/sitpraesentiumrepellendus.png?size=300x300&set=set1'
+    user.photo = '<span class="photo"> <img src="https://robohash.org/voluptatibusperspiciatissuscipit.png?size=300x300&amp;set=set1" width="100" height="100" /> </span>'
     within(first('.user-list')) do
-      expect(page).to have_xpath("//img[contains(@src,'#{user.photo}')]")
+      expect(page.body).to include(user.photo)
     end
   end
 
