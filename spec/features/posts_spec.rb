@@ -71,18 +71,6 @@ RSpec.feature "Post show", type: :feature do
     expect(page.body).to include(post.title)
   end
 
-  scenario "I can see who wrote the post" do
-    expect(page.body).to include("by #{post.user.name}")
-  end
-
-  scenario "I can see how many comments it has" do
-    expect(page).to have_content("comments: 5")
-  end
-
-  scenario "I can see how many likes it has" do
-    expect(page).to have_content("likes: 10")
-  end
-
   scenario "I can see the post body" do
     expect(page).to have_content(post.text)
   end

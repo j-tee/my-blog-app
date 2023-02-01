@@ -1,4 +1,6 @@
-RSpec.feature 'Users view', type: :feature do
+require 'rails_helper'
+
+RSpec.feature "Users#index", type: :feature do
   let(:user) { FactoryBot.create(:user) }
 
   before do
@@ -26,6 +28,22 @@ RSpec.feature 'Users view', type: :feature do
       user.name = 'Georgianne Boehm'
       expect(page).to have_content(user.name)
     end
+  end
+
+  scenario 'I can see the number of posts each user has written' do
+    within(first('.user-list')) do
+      expect(page).to have_content("number of posts: #{user.posts.count}")
+    end
+  end
+end
+RSpec.feature 'Users#show', type: :feature do
+  let(:user) { FactoryBot.create(:user) }
+
+  before do
+    FactoryBot.create(:post, user:)
+    FactoryBot.create_list(:user, 3)
+    visit users_path
+    sleep(5)
   end
 
   scenario 'I can see the number of posts each user has written' do
