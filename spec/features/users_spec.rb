@@ -7,7 +7,6 @@ RSpec.feature 'Users#index', type: :feature do
     FactoryBot.create(:post, user:)
     FactoryBot.create_list(:user, 3)
     visit users_path
-    sleep(5)
   end
 
   scenario 'I can see the profile picture for each user' do
