@@ -57,12 +57,12 @@ RSpec.feature 'User posts index', type: :feature do
   end
 end
 
-RSpec.feature "Post show", type: :feature do
+RSpec.feature 'Post show', type: :feature do
   let(:user) { FactoryBot.create(:user) }
-  let(:post) { FactoryBot.create(:post, user: user) }
+  let(:post) { FactoryBot.create(:post, user:) }
 
   before do
-    5.times { FactoryBot.create(:comment, post: post, user: FactoryBot.create(:user)) }
+    5.times { FactoryBot.create(:comment, post:, user: FactoryBot.create(:user)) }
     10.times { post.likes.create(user: FactoryBot.create(:user)) }
     visit user_post_path(user, post)
   end
@@ -71,15 +71,15 @@ RSpec.feature "Post show", type: :feature do
     expect(page.body).to include(post.title)
   end
 
-  scenario "I can see the post body" do
+  scenario 'I can see the post body' do
     expect(page).to have_content(post.text)
   end
 
-  scenario "I can see the username of each commentor" do
+  scenario 'I can see the username of each commentor' do
     expect(page.body).to include(post.user.name)
   end
 
-  scenario "I can see the comment each commentor left" do
+  scenario 'I can see the comment each commentor left' do
     post.comments.each do |comment|
       expect(page.body).to include(comment.text)
     end
