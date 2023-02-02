@@ -43,7 +43,6 @@ RSpec.feature 'Users#show', type: :feature do
     FactoryBot.create(:post, user:)
     FactoryBot.create_list(:user, 3)
     visit users_path
-    sleep(5)
   end
 
   scenario 'I can see the number of posts each user has written' do
