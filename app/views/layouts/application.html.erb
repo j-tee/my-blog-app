@@ -11,10 +11,13 @@
   </head>
 
   <body>
-    <div class="container">
+    <header>
       <%= render 'layouts/shared/navbar' %>
-      <h1 align="center">The Blogger!!</h1>
+        <%= render 'layouts/shared/alerts'%>
+    </header>
+    <main class="container">
+      <h1 align="center">The Blogger!!</h1>    
       <%= yield %>
-    </div>
+    </main>
   </body>
 </html>
