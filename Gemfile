@@ -47,9 +47,8 @@ gem 'bootsnap', require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
-gem 'factory_bot_rails'
-
 gem 'factory_bot'
+gem 'factory_bot_rails'
 gem 'faker'
 
 group :development, :test do
