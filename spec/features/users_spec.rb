@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature "Users#index", type: :feature do
+RSpec.feature 'Users#index', type: :feature do
   let(:user) { FactoryBot.create(:user) }
 
   before do
