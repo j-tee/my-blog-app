@@ -1,46 +1,53 @@
 <% require 'will_paginate/view_helpers/action_view' %>
 <div class="user-wrapper">
-    <div class="user-container">
-        <div class="user-list">
-            <span class="photo">
-                <%= image_tag(@posts.first.user.photo, size: "100x100") %>
-            </span>
-            <span class="user-info">
-                <span>
-                    
-                    <%= link_to @posts.first.user.name, user_post_path(user_id: @posts.first.user.id, id: @posts.first.id) %>
-
-                </span>
-                <span>
-                    number of posts: <%= @posts.first.user.posts_counter ? @posts.first.user.posts_counter : 0 %>
-                  </span>
-            </span>
-        </div>
-        <%= link_to 'New Post', new_user_post_path %>
-        <div class="pagination">
-            <%= will_paginate @posts, class: "pagination", :previous_label => 'Previous', :next_label => 'Next', :inner_window => 2, :outer_window => 0 %>
-        </div>
-        <%=@posts.count%> posts written by <%=@posts.first.user.name%>
-        <%@posts.each do |post|%>
-        <div class="post-list">
-            <span class="post-text">
-                <span>
-                    <%= link_to "Post #: #{post.id}", url_for(controller: 'posts', action: 'show', id: post.id) %>
-                </span>
-                <span>
-                    <%= post.text %>
-                </span>
-                <span>comments: <%= post.comments.count %>&nbsp; likes: <%= post.likes.count %></span>
-            </span>
-            <ul class="comment-text">
-                <%post.recent_comments.each do |comment|%>
-                <li>
-                    <%=post.user.name%>:<%=comment.text%>
-                </li>
-                <%end%>
-            </ul>
-        </div>
-        <%end%>
-        <%= will_paginate @posts, class: "pagination", :previous_label => 'Previous', :next_label => 'Next', :inner_window => 2, :outer_window => 0 %>
+  <div class="user-container">
+    <div class="user-list">
+      <% if @posts.first.try(:user).present? %>
+        <span class="photo">
+          <%= image_tag(@posts.first.user.photo, size: "100x100") %>
+        </span>
+        <span class="user-info">
+          <span>
+            <%= link_to @posts.first.user.name, user_post_path(user_id: @posts.first.user.id, id: @posts.first.id) %>
+          </span>
+          <span>
+            number of posts: <%= @posts.first.user.posts_counter ? @posts.first.user.posts_counter : 0 %>
+          </span>
+        </span>
+      <% end %>
     </div>
+    <%= link_to 'New Post', new_user_post_path %>
+    <div class="pagination">
+      <%= will_paginate @posts, class: "pagination", :previous_label => 'Previous', :next_label => 'Next', :inner_window => 2, :outer_window => 0 %>
+    </div>
+    <% if @posts.first.try(:user).present? %>
+      <%=@posts.count%> posts written by <%=@posts.first.user.name%>
+    <% end %>
+    <%@posts.each do |post|%>
+      <div class="post-list">
+        <span class="post-text">
+          <span>
+            <%= link_to "Post #: #{post.id}", url_for(controller: 'posts', action: 'show', id: post.id) %>
+          </span>
+          <span>
+            <%= post.text %>
+          </span>
+          <span>
+            <% if can? :delete, post %>
+      <%= button_to 'Delete',  user_post_path(user_id:post.user_id, id: post.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+          </span>
+          <span>comments: <%= post.comments.count %>&nbsp; likes: <%= post.likes.count %></span>
+        </span>
+        <ul class="comment-text">
+          <%post.recent_comments.each do |comment|%>
+            <li>
+              <%= post.user.try(:name) %>:<%=comment.text%>
+            </li>
+          <%end%>
+        </ul>
+      </div>
+    <%end%>
+    <%= will_paginate @posts, class: "pagination", :previous_label => 'Previous', :next_label => 'Next', :inner_window => 2, :outer_window => 0 %>
+  </div>
 </div>

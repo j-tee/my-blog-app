@@ -11,7 +11,9 @@ class PostsController < ApplicationController
   end
 
   def new
-    @post = current_user.posts.new
+    user = User.get_user(current_member.id)
+    @post = Post.new
+    @post.user = user
     @post.comments_counter = 0
     @post.likes_counter = 0
   end
@@ -35,7 +37,7 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
-    redirect_to posts_path, notice: 'Post was successfully deleted.'
+    redirect_to user_post_path(user_id:@post.user_id, id: @post.id), notice: 'Post was successfully deleted.'
   end
 
   private
@@ -47,7 +49,7 @@ class PostsController < ApplicationController
   def authorize_delete
     return if can? :delete, @post
 
-    redirect_to posts_path, notice: 'You are not authorized to delete this post.'
+    redirect_to user_post_path(user_id:@post.user_id, id: @post.id), notice: 'You are not authorized to delete this post.'
   end
 
   def post_params

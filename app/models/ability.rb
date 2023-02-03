@@ -5,7 +5,7 @@ class Ability
       post.user.member_id == member.id || member.admin?
     end
     can :delete, Comment do |comment|
-      comment.user.member == member || member.admin?
+      comment.user.member_id == member.id || member.admin?
     end
   end
 end
