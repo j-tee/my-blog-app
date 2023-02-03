@@ -17,8 +17,8 @@ class User < ActiveRecord::Base
       user.photo = avatar_url(user)
       user.name = generate_fake_name
       user.member_id = id
-      user.posts_counter=0;
-      user.save      
+      user.posts_counter = 0
+      user.save
     end
     user
   end
@@ -27,21 +27,21 @@ class User < ActiveRecord::Base
     posts.order(created_at: :desc).limit(3)
   end
 
-  private
   def self.generate_fake_bio
     require 'faker'
     Faker::Lorem.paragraph(sentence_count: 5)
   end
-  
+
   def self.generate_fake_name
     require 'faker'
     Faker::Name.name
   end
+
   def self.avatar_url(user)
     if user.photo.present?
       user.photo
     else
-      "https://example.com/images/no_photo_avatar.png"
+      'https://example.com/images/no_photo_avatar.png'
     end
   end
 end

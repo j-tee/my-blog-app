@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       p 'before redirecting==================================='
       if user.persisted?
         p 'redirecting==================================='
-        redirect_to user_posts_path(user_id: user.id) 
+        redirect_to user_posts_path(user_id: user.id)
       end
     end
     @users = User.all
