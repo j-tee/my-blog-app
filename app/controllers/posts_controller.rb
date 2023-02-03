@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: %i[show destroy]
+  before_action :authorize_delete, only: [:destroy]
+
   def index
     @posts = Post.user_posts(params[:user_id]).paginate(page: params[:page], per_page: 10)
   end
@@ -30,7 +33,22 @@ class PostsController < ApplicationController
     end
   end
 
+  def destroy
+    @post.destroy
+    redirect_to posts_path, notice: 'Post was successfully deleted.'
+  end
+
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def authorize_delete
+    return if can? :delete, @post
+
+    redirect_to posts_path, notice: 'You are not authorized to delete this post.'
+  end
 
   def post_params
     params.require(:post).permit(:title, :text)

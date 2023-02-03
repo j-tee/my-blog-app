@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  belongs_to :member, class_name: 'member', foreign_key: 'member_id'
   has_many :comments, class_name: 'Comment', foreign_key: 'user_id'
   has_many :posts, through: :comments
   has_many :posts, class_name: 'Post', foreign_key: 'user_id'
