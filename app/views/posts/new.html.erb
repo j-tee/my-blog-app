@@ -1,6 +1,6 @@
 <div>
-    <%= form_with(model: [@user, @post], local: true, url: user_posts_path(@user)) do |form| %>
-  <%= form.hidden_field :user_id, value: @user.id %>
+    <%= form_with(model: [@user, @post], local: true, url: user_posts_path(user_id: @post.user_id)) do |form| %>
+  <%= form.hidden_field :user_id, value: @post.user_id %>
   <div class="form-group">
     <%= form.label :title %>
     <%= form.text_field :title, class: 'form-control' %>

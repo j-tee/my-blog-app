@@ -47,14 +47,14 @@ gem 'bootsnap', require: false
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
-gem 'factory_bot_rails'
-
 gem 'factory_bot'
+gem 'factory_bot_rails'
 gem 'faker'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
 end
@@ -76,5 +76,6 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-
+gem 'cancancan'
+gem 'devise'
 gem 'ruby-lsp', '~> 0.3.8', group: :development
