@@ -5,7 +5,7 @@
 # are not: uncommented lines are intended to protect your configuration from
 # breaking changes in upgrades (i.e., in the event that future versions of
 # Devise change the default values for those options).
-#
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -15,7 +15,9 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = 'f0b0546904ffbc5aabc43d9f2eb7db29b0e7997b263f57b9af702b92598cffc9e8a908c3163d07857400449832c3149851fa682429a327add3552b92ff5dde94'
-
+  config.warden do |manager|
+    manager.default_strategies(scope: :member) << :jwt_authentication
+  end
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
   # config.parent_controller = 'DeviseController'

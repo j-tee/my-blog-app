@@ -1,21 +1,23 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_member!, only: [:index]
+
   def index
     if member_signed_in?
       id = current_member.id
-      p '===============member id================='
-      p id
-      p '===============member id================='
       user = User.get_user(id)
-      p 'before redirecting==================================='
       if user.persisted?
-        p 'redirecting==================================='
-        redirect_to user_posts_path(user_id: user.id)
+        render json: { success: true, user: user }, status: :ok
+      else
+        render json: { success: false, error: "User not found" }, status: :not_found
       end
+    else
+      @users = User.all
+      render json: { success: true, users: @users }, status: :ok
     end
-    @users = User.all
   end
 
   def show
     @user = User.find(params[:id])
+    render json: { success: true, user: @user }, status: :ok
   end
 end
