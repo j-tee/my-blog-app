@@ -1,5 +1,6 @@
 <div class="user-wrapper">
   <div class="user-container">
+    <h1><%=@post.title%></h1>
     <div class="user-list">
       <span class="photo">
         <%= image_tag(@post.user.photo, size: "100x100" ) %>
@@ -47,9 +48,17 @@
     <% end %>
 
     <ul class="comments">
-      <%@post.comments.each do |comment|%>
-      <li><%=@post.user.name%> : <%=comment.text%></li>
+      
+      <% if @post.comments.count > 0%> 
+      <% @post.comments.each do |comment| %>
+      <li><%= @post.user.name %> : <%= comment.text %></li>
+      <% if comment.id?%>
+      <%= button_to 'Delete', user_post_comment_path(user_id:
+      comment.post.user_id, post_id: comment.post_id, id: comment.id), method:
+      :delete, data: { confirm: 'Are you sure?' } %> 
       <%end%>
+      <% end %> 
+      <% end %>
     </ul>
   </div>
 </div>
