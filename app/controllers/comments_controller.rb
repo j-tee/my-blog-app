@@ -1,5 +1,12 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:destroy]
+
+  def index
+    post = Post.find(params[:post_id])
+    comments = post.comments
+    render json: comments, status: :ok
+  end
+
   def destroy
     authorize! :delete, @comment
     @comment.destroy
@@ -13,9 +20,9 @@ class CommentsController < ApplicationController
     @comment.user_id = user.id
     if @comment.valid?
       @comment.save
-      flash[:notice] = 'Comment created successfully!'
+      render json: comment, status: :created
     else
-      flash[:error] = @comment.errors.full_messages.join(', ')
+      render json: comment.errors, status: :unprocessable_entity
     end
     redirect_to user_post_path(user_id: user.id, id: @post.id)
   end

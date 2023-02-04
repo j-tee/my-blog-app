@@ -4,6 +4,10 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.user_posts(params[:user_id]).paginate(page: params[:page], per_page: 10)
+    respond_to do |format|
+      format.html
+      format.json { render json: @posts }
+    end
   end
 
   def show
